@@ -1,4 +1,54 @@
 #include "InputAndOutput.h"
+#include "Sort.h"
+
+bool isAllDigits(string s)
+{
+    int i = 0;
+    while (i < s.length() && isdigit(s[i]) != 0)
+        i++;
+    if (i == s.length())
+        return true;
+    else
+        return false;
+}
+
+bool isParameter(string s)
+{
+    if (s != _p_both && s != _p_comp && s != _p_time)
+        return false;
+    else
+        return true;
+}
+
+int typeSort(string s)
+{
+    if (s == "slection-sort")
+        return selection;
+    if (s == "insertion-sort")
+        return insertion;
+    if (s == "bubble-sort")
+        return bubble;
+    if (s == "heap-sort")
+        return heap;
+    if (s == "merge-sort")
+        return merge;
+    if (s == "quick-sort")
+        return quick;
+    if (s == "radix-sort")
+        return radix;
+    if (s == "shaker-sort")
+        return shaker;
+    if (s == "counting-sort")
+        return counting;
+    if (s == "flash-sort")
+        return flash;
+    return -1;
+}
+
+double calRunningTime(clock_t start, clock_t end)
+{
+    return double(end - start) / (CLOCKS_PER_SEC);
+}
 
 bool readInput(string file_path, int *&arr, int &size)
 {
@@ -41,7 +91,7 @@ bool writeOutput(string file_path, int *arr, int size)
     }
 }
 
-void printParameter_AMode(long int time, long int comparisions, string parameter)
+void printParameter_AMode(double time, long int comparisions, string parameter)
 {
     if (parameter == _p_time)
         cout << "Running time: " << time << endl;
@@ -53,7 +103,8 @@ void printParameter_AMode(long int time, long int comparisions, string parameter
         cout << "Comparisions: " << comparisions << endl;
     }
 }
-void printParameter_CMode(long int time_1, long int time_2, long int comp_1, long int comp_2, string parameter)
+
+void printParameter_CMode(double time_1, double time_2, long int comp_1, long int comp_2, string parameter)
 {
     if (parameter == _p_time)
         cout << "Running time: " << setw(12) << time_1 << " | " << setw(12) << time_2 << endl;
@@ -65,6 +116,7 @@ void printParameter_CMode(long int time_1, long int time_2, long int comp_1, lon
         cout << "Comparisions: " << setw(12) << comp_1 << " | " << setw(12) << comp_2 << endl;
     }
 }
+
 void printDivide()
 {
     for (int i = 0; i < 10; i++)
