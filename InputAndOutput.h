@@ -6,10 +6,6 @@
 #include <iomanip>
 using namespace std;
 
-// Constants for mode
-#define algorithm_mode "-a"
-#define compare_mode "-c"
-
 // Constants for parameter
 #define _p_time "-time"
 #define _p_comp "-comp"
