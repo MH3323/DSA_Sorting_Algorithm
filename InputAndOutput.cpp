@@ -22,7 +22,7 @@ bool isParameter(string s)
 
 int typeSort(string s)
 {
-    if (s == "slection-sort")
+    if (s == "selection-sort")
         return selection;
     if (s == "insertion-sort")
         return insertion;
