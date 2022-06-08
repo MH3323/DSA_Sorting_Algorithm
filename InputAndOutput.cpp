@@ -37,6 +37,7 @@ bool writeOutput(string file_path, int *arr, int size)
         {
             file << arr[i] << " ";
         }
+        return true;
     }
 }
 
@@ -57,11 +58,11 @@ void printParameter_CMode(long int time_1, long int time_2, long int comp_1, lon
     if (parameter == _p_time)
         cout << "Running time: " << setw(12) << time_1 << " | " << setw(12) << time_2 << endl;
     else if (parameter == _p_comp)
-        cout << "Comparisions: " << sewt(12) << comp_1 << " | " << setw(12) << comp_2 << endl;
+        cout << "Comparisions: " << setw(12) << comp_1 << " | " << setw(12) << comp_2 << endl;
     else if (parameter == _p_both)
     {
         cout << "Running time: " << setw(12) << time_1 << " | " << setw(12) << time_2 << endl;
-        cout << "Comparisions: " << sewt(12) << comp_1 << " | " << setw(12) << comp_2 << endl;
+        cout << "Comparisions: " << setw(12) << comp_1 << " | " << setw(12) << comp_2 << endl;
     }
 }
 void printDivide()
