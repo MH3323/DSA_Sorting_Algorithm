@@ -74,19 +74,71 @@ int main(int argc, char *argv[])
                     else
                         cout << "There hasn't this parameter.\n";
                 }
-            } 
+            }
         }
-        else 
+        else
             cout << "There hasn't this algorithm.\n";
     }
     else if (string(argv[1]) == string(compare_mode))
     {
+        cout << "COMPARE MODE" << endl;
         if (argc == 5)
         {
             // Here is code for command 4
+            if (readInput(string(argv[4]), arr, size))
+            {
+                int Algorithm_1 = typeSort(string(argv[2])), Algorithm_2 = typeSort(string(argv[3]));
+                if (Algorithm_1 == -1 || Algorithm_2 == -1)
+                {
+                    cout << "There hasn't this algorithm.\n";
+                }
+                else
+                {
+                    cout << "Algorithm: " << setw(12) << argv[2] << "|" << setw(12) << argv[3] << end;
+                    cout << "Input file : " << argv[4] << endl;
+                    cout << "Input size : " << size << endl;
+                    printDivide();
+                    int *arr2 = new int[size];
+                    for (int i = 0; i < size; i++)
+                        arr2[i] = arr[i];
+                    clock_t start2, end2;
+                    long long int comparisons2 = 0;
+                    SortData(Algorithm_1, start, end, comparisons, arr, size);
+                    SortData(Algorithm_2, start2, end2, comparisons2, arr2, size);
+                    printParameter_CMode(calRunningTime(start, end), calRunningTime(start2, end2), comparisons, comparisons2, _p_both);
+                    delete[] arr2;
+                }
+            }
+            else
+            {
+                cout << "Open file fails!\n";
+            }
+
         }
         else if (argc == 6)     {
             // Here is code for command 5
+            int Algorithm_1 = typeSort(string(argv[2])), Algorithm_2 = typeSort(string(argv[3]));
+            if (Algorithm_1 == -1 || Algorithm_2 == -1)
+            {
+                cout << "There hasn't this algorithm.\n";
+            }
+            else
+            {
+                size = stoi(string(argv[4]));
+                cout << "Algorithm: " << setw(12) << argv[2] << "|" << setw(12) << argv[3] << end;
+                cout << "Input size : " << size << endl;
+                cout << "Input order : " << typeOrder_String(string(argv[5]));
+                printDivide();
+                int *arr2 = new int[size];
+                for (int i = 0; i < size; i++)
+                    arr2[i] = arr[i];
+                clock_t start2, end2;
+                long long int comparisons2 = 0;
+                SortData(Algorithm_1, start, end, comparisons, arr, size);
+                SortData(Algorithm_2, start2, end2, comparisons2, arr2, size);
+                printParameter_CMode(calRunningTime(start, end), calRunningTime(start2, end2), comparisons, comparisons2, _p_both);
+                delete[] arr2;
+            }
         }
     }
     else
