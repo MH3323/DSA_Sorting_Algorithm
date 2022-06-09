@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
                     writeOutput("output.txt", arr, size);
                     parameter = string(argv[5]);
                     if (isParameter(parameter))
-                    {
+                    {~
                         cout << "Input size: " << size << endl;
                         cout << "Input order: " << typeOrder_String(string(argv[4])) << endl;
                         printDivide();
