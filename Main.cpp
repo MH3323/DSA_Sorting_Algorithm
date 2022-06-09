@@ -61,6 +61,21 @@ int main(int argc, char *argv[])
         else if (argc == 6)
         {
             // Here is code for command 2
+            size = stoi(argv[3]);
+            int order = stoi(argv[4]);
+            GenerateData(arr, size, order);
+            writeOutput("input.txt", arr, size);
+            parameter = string(argv[5]);
+            if (isParameter(parameter))
+            {
+                cout << "Input size: " << size << endl;
+                cout << "Input order: " << order << endl;
+                printDivide();
+                SortData(typeSort(string(argv[2])), start, end, comparisions, arr, size);
+                printParameter_AMode(calRunningTime(start, end), comparisions, parameter);
+            }
+            else
+                cout << "There hasn't this parameter.\n";
         }
     }
     else if (string(argv[1]) == string(compare_mode))
@@ -78,10 +93,10 @@ int main(int argc, char *argv[])
     {
         cout << "Don't have this command.\n";
     }
-    
+
     // Print test
     printDivide();
-    printTest(arr,size);
+    printTest(arr, size);
 
     // Delete pointer
     delete[] arr;
