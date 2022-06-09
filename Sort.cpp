@@ -38,7 +38,32 @@ void insertionSort(int *arr, int size);
 
 void bubbleSort(int *arr, int size);
 
-void headSort(int *arr, int size);
+//Heap sort
+void heapify(int arr[], int size, int i)
+{
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+    if (l < size && arr[l] > arr[largest])
+        largest = l;
+    if (r < size && arr[r] > arr[largest])
+        largest = r;
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapify(arr, size, largest);
+    }
+}
+
+void heapSort(int arr[], int size)
+{
+
+    for (int i = size / 2 - 1; i >= 0; i--)
+        heapify(arr, size, i);
+    for (int i = size - 1; i > 0; i--) {
+        swap(arr[0], arr[i]);
+        heapify(arr, i, 0);
+    }
+}
 
 // Merge sort
 void merge2Array(int *&arr, int left, int mid, int right, long long int &comparisons)
@@ -106,7 +131,33 @@ void quickSort(int *arr, int size);
 
 void radixSort(int *arr, int size);
 
-void shakerSort(int *arr, int size);
+void shakerSort(int *arr, int size)
+{
+    int Left = 0;
+	int Right = size - 1;
+	int k = 0;
+	while (Left < Right)
+	{
+		for (int i = Left; i < Right; i++)
+		{
+			if (arr[i] > arr[i + 1])
+			{
+				swap(arr[i], arr[i + 1]);
+				k = i;
+			}
+		}
+		Right = k;
+		for (int i = Right; i > Left; i--)
+		{
+			if (arr[i] < arr[i - 1])
+			{
+				swap(arr[i], arr[i - 1]);
+				k = i;
+			}
+		}
+		Left = k;
+	}
+}
 
 void shellSort(int *arr, int size);
 
@@ -128,6 +179,9 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
     case bubble:
         break;
     case heap:
+        start = clock();
+        heapSort(arr, size);
+        end = clock();
         break;
     case merge:
         start = clock();
@@ -139,6 +193,9 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
     case radix:
         break;
     case shaker:
+        start = clock();
+        shakerSort(arr, size);
+        end = clock();
         break;
     case shell:
         break;
