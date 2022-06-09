@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     string temp = "", parameter = "";
     int *arr = nullptr;
     int size = 0;
-    longlong int comparisions = 0;
+    long long int comparisons = 0;
     if (string(argv[1]) == string(algorithm_mode))
     {
         cout << "ALGORITHM MODE\n";
@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
                             cout << "Input file: " << temp << endl;
                             cout << "Input size: " << size << endl;
                             printDivide();
-                            SortData(typeSort(string(argv[2])), start, end, comparisions, arr, size);
-                            printParameter_AMode(calRunningTime(start, end), comparisions, parameter);
+                            SortData(typeSort(string(argv[2])), start, end, comparisons, arr, size);
+                            printParameter_AMode(calRunningTime(start, end), comparisons, parameter);
                             writeOutput("output.txt", arr, size);
                         }
                         else
@@ -67,8 +67,8 @@ int main(int argc, char *argv[])
                         cout << "Input size: " << size << endl;
                         cout << "Input order: " << typeOrder_String(string(argv[4])) << endl;
                         printDivide();
-                        SortData(typeSort(string(argv[2])), start, end, comparisions, arr, size);
-                        printParameter_AMode(calRunningTime(start, end), comparisions, parameter);
+                        SortData(typeSort(string(argv[2])), start, end, comparisons, arr, size);
+                        printParameter_AMode(calRunningTime(start, end), comparisons, parameter);
                         writeOutput("output.txt",arr,size);
                     }
                     else
@@ -85,8 +85,7 @@ int main(int argc, char *argv[])
         {
             // Here is code for command 4
         }
-        else if (argc == 6)
-        {
+        else if (argc == 6)     {
             // Here is code for command 5
         }
     }
@@ -97,7 +96,6 @@ int main(int argc, char *argv[])
 
     // Print test
     // printDivide();
-    // printTest(arr, size);
 
     // Delete pointer
     delete[] arr;

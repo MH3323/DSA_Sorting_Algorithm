@@ -18,7 +18,7 @@
         1. Run one-sorting algorithm and required to calculate the running time and the comparisions for each algorithm.
         2. Run two-sorting algoritm and compare
 ### Coding
-    1. You will buil your algorithms which assigned before in-sort.h and-sort.pp
+    1. You will buil your algorithms which assigned before in-sort.h and-sort.cpp
     2. We will develop one function to choice algoritm from command and run it. (We will have 11-sorting algorithm).
 ## How to use this program?
     This program use command line in cmd to run. There're five command line.
