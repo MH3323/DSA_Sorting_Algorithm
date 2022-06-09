@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
     
     // Print test
     printDivide();
-    printTest(arr,size);
+    printTest(arr, size);
 
     // Delete pointer
     delete[] arr;
