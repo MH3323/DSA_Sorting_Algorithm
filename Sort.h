@@ -24,7 +24,7 @@ void selectionSort(int *&arr, int size, long long int &comparisons);
 
 void insertionSort(int *arr, int size);
 void bubbleSort(int *arr, int size);
-void headSort(int *arr, int size);
+void heapSort(int *arr, int size);
 
 // Merge sort
 void merge2Array(int *&arr, int left, int mid, int right, long long int& comparisons);
