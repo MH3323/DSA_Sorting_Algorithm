@@ -13,12 +13,7 @@ int main(int argc, char *argv[])
     string temp = "", parameter = "";
     int *arr = nullptr;
     int size = 0;
-    long int comparisions = 0;
-    cout<<argc<<endl;
-    for(int i=0;i<argc;i++)
-    {
-        cout<<argv[i]<<endl;
-    }
+    longlong int comparisions = 0;
     if (string(argv[1]) == string(algorithm_mode))
     {
         cout << "ALGORITHM MODE\n";
@@ -46,6 +41,7 @@ int main(int argc, char *argv[])
                             printDivide();
                             SortData(typeSort(string(argv[2])), start, end, comparisions, arr, size);
                             printParameter_AMode(calRunningTime(start, end), comparisions, parameter);
+                            writeOutput("output.txt", arr, size);
                         }
                         else
                             cout << "Reading the data file was failing.\n";
@@ -57,22 +53,23 @@ int main(int argc, char *argv[])
             else if (argc == 6)
             {
                 // Here is code for command 2
-                cout<<"Run"<<endl;
                 size = stoi(string(argv[3]));
                 if(typeOrder(string(argv[4])) == -1)
                     cout << "No order.\n";
                 else
                 {
+                    arr = new int[size];
                     GenerateData(arr, size, typeOrder(string(argv[4])));
-                    writeOutput("output.txt", arr, size);
+                    writeOutput("input.txt", arr, size);
                     parameter = string(argv[5]);
                     if (isParameter(parameter))
-                    {~
+                    {
                         cout << "Input size: " << size << endl;
                         cout << "Input order: " << typeOrder_String(string(argv[4])) << endl;
                         printDivide();
                         SortData(typeSort(string(argv[2])), start, end, comparisions, arr, size);
                         printParameter_AMode(calRunningTime(start, end), comparisions, parameter);
+                        writeOutput("output.txt",arr,size);
                     }
                     else
                         cout << "There hasn't this parameter.\n";
@@ -99,8 +96,8 @@ int main(int argc, char *argv[])
     }
 
     // Print test
-    printDivide();
-    printTest(arr, size);
+    // printDivide();
+    // printTest(arr, size);
 
     // Delete pointer
     delete[] arr;

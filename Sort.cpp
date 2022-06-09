@@ -1,7 +1,7 @@
 #include "Sort.h"
 
 // Selections sort
-int indexMax(int *arr, int size, long int &comparisions)
+int indexMax(int *arr, int size, long long int &comparisions)
 {
     int max = arr[0], index_max = 0;
     for (int i = 1; ++comparisions && i <= size; i++)
@@ -22,7 +22,7 @@ void swap(int &a, int &b)
     a = a - b;
 }
 
-void selectionSort(int *&arr, int size, long int &comparisions)
+void selectionSort(int *&arr, int size, long long int &comparisions)
 {
     int left = size - 1, index;
     while (++comparisions && left >= 1)
@@ -54,7 +54,7 @@ void countingSort(int *arr, int size);
 
 void flashSort(int *arr, int size);
 
-void SortData(int type_sort, clock_t &start, clock_t &end, long int &comparisions, int *&arr, int size)
+void SortData(int type_sort, clock_t &start, clock_t &end, long long int &comparisions, int *&arr, int size)
 {
     switch (type_sort)
     {

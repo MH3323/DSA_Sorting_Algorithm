@@ -27,8 +27,8 @@ double calRunningTime(clock_t start, clock_t end);
 
 bool readInput(string file_path, int *&arr, int &size);
 bool writeOutput(string file_path, int *arr, int size);
-void printParameter_AMode(double time, long int comparisions, string parameter);
-void printParameter_CMode(double time_1, double time_2, long int comp_1, long int comp_2, string parameter);
+void printParameter_AMode(double time, long long int comparisions, string parameter);
+void printParameter_CMode(double time_1, double time_2, long long int comp_1, long long int comp_2, string parameter);
 void printDivide();
 
 void printTest(int *arr, int size);

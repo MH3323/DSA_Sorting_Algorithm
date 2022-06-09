@@ -101,33 +101,34 @@ bool writeOutput(string file_path, int *arr, int size)
     else
     {
         file << size << endl;
-        for (int i = 0; i < size; i++)
-        {
-            file << arr[i] << " ";
-        }
+        if(arr != nullptr)
+            for (int i = 0; i < size; i++)
+            {
+                file << arr[i] << " ";
+            }
         return true;
     }
 }
 
-void printParameter_AMode(double time, long int comparisions, string parameter)
+void printParameter_AMode(double time, long long int comparisions, string parameter)
 {
     if (parameter == _p_time)
-        cout << "Running time: " << time << endl;
+        cout << "Running time: " << left << setw(12) << time << endl;
     else if (parameter == _p_comp)
-        cout << "Comparisions: " << comparisions << endl;
+        cout << "Comparisions: " << left << setw(12) << comparisions << endl;
     else if (parameter == _p_both)
     {
-        cout << "Running time: " << time << endl;
-        cout << "Comparisions: " << comparisions << endl;
+        cout << "Running time: " << left << setw(12) << time << endl;
+        cout << "Comparisions: " << left << setw(12) << comparisions << endl;
     }
 }
 
-void printParameter_CMode(double time_1, double time_2, long int comp_1, long int comp_2, string parameter)
+void printParameter_CMode(double time_1, double time_2, long long int comp_1, long long int comp_2, string parameter)
 {
     if (parameter == _p_time)
-        cout << "Running time: " << setw(12) << time_1 << " | " << setw(12) << time_2 << endl;
+        cout << "Running time: " << left << setw(12) << time_1 << " | " << left << setw(12) << time_2 << endl;
     else if (parameter == _p_comp)
-        cout << "Comparisions: " << setw(12) << comp_1 << " | " << setw(12) << comp_2 << endl;
+        cout << "Comparisions: " << left << setw(12) << comp_1 << " | " << left << setw(12) << comp_2 << endl;
     else if (parameter == _p_both)
     {
         cout << "Running time: " << setw(12) << time_1 << " | " << setw(12) << time_2 << endl;
