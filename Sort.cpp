@@ -1,6 +1,38 @@
 #include "Sort.h"
 
-void selectionSort(int *arr, int size);
+// Selections sort
+int indexMax(int *arr, int size, long int &comparisions)
+{
+    int max = arr[0], index_max = 0;
+    for (int i = 1; ++comparisions && i <= size; i++)
+    {
+        if (++comparisions && max < arr[i])
+        {
+            max = arr[i];
+            index_max = i;
+        }
+    }
+    return index_max;
+}
+
+void swap(int &a, int &b)
+{
+    a = a + b;
+    b = a - b;
+    a = a - b;
+}
+
+void selectionSort(int *&arr, int size, long int &comparisions)
+{
+    int left = size - 1, index;
+    while (++comparisions && left >= 1)
+    {
+        index = indexMax(arr, left, comparisions);
+        if(++comparisions && left != index) swap(arr[left], arr[index]);
+        left--;
+    }
+}
+//---------------
 
 void insertionSort(int *arr, int size);
 
@@ -27,6 +59,9 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long int &comparision
     switch (type_sort)
     {
     case selection:
+        start = clock();
+        selectionSort(arr, size, comparisions);
+        end = clock();
         break;
     case insertion:
         break;

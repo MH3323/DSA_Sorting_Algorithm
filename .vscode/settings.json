@@ -4,5 +4,8 @@
         "iostream": "cpp",
         "iomanip": "cpp",
         "string": "cpp"
-    }
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true
 }

@@ -47,7 +47,7 @@ int typeSort(string s)
 
 double calRunningTime(clock_t start, clock_t end)
 {
-    return double(end - start) / (CLOCKS_PER_SEC);
+    return double(end - start) / double(CLOCKS_PER_SEC);
 }
 
 bool readInput(string file_path, int *&arr, int &size)
@@ -122,4 +122,10 @@ void printDivide()
     for (int i = 0; i < 10; i++)
         cout << "-";
     cout << endl;
+}
+
+void printTest(int *arr, int size)
+{
+    for(int i = 0;i < size; i++) 
+        cout << arr[i] << " ";
 }

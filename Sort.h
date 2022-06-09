@@ -17,7 +17,11 @@ using namespace std;
 #define counting 9
 #define flash 10
 
-void selectionSort(int *arr, int size);
+// Selection sort
+int indexMax(int *arr, int size, long int &comparisions);
+void swap(int &a, int &b);
+void selectionSort(int *&arr, int size, long int &comparisions);
+
 void insertionSort(int *arr, int size);
 void bubbleSort(int *arr, int size);
 void headSort(int *arr, int size);

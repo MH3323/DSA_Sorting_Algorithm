@@ -16,9 +16,9 @@ const int type_nsorted = 3; // Nearly sorted data
 int main(int argc, char *argv[])
 {
     clock_t start, end;
-    string temp, parameter;
+    string temp = "", parameter = "";
     int *arr = nullptr;
-    int size;
+    int size = 0;
     long int comparisions = 0;
     if (string(argv[1]) == string(algorithm_mode))
     {
@@ -78,4 +78,11 @@ int main(int argc, char *argv[])
     {
         cout << "Don't have this command.\n";
     }
+    
+    // Print test
+    printDivide();
+    printTest(arr,size);
+
+    // Delete pointer
+    delete[] arr;
 }
