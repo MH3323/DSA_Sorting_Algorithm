@@ -11,9 +11,17 @@ using namespace std;
 #define _p_comp "-comp"
 #define _p_both "-both"
 
+// Constant for data type
+const int type_rand = 0;    // Randomized data
+const int type_sorted = 1;  // Sorted data
+const int type_rev = 2;     // Reverse sorted data
+const int type_nsorted = 3; // Nearly sorted data
+
 bool isAllDigits(string s);
 bool isParameter(string s);
 int typeSort(string s);
+int typeOrder(string s);
+string typeOrder_String(string s);
 
 double calRunningTime(clock_t start, clock_t end);
 

@@ -3,7 +3,11 @@
     "files.associations": {
         "iostream": "cpp",
         "iomanip": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "xstring": "cpp",
+        "initializer_list": "cpp",
+        "type_traits": "cpp",
+        "xutility": "cpp"
     },
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,

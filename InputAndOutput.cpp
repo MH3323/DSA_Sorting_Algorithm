@@ -45,6 +45,24 @@ int typeSort(string s)
     return -1;
 }
 
+int typeOrder(string s)
+{
+    if(s == "-rand") return type_rand;
+    if(s == "-nsorted") return type_nsorted;
+    if(s == "-sorted") return type_sorted;
+    if(s == "-rev") return type_rev;
+    return -1;
+} 
+
+string typeOrder_String(string s)
+{
+    if(s == "-rand") return "Randomized";
+    if(s == "-nsorted") return "Nearly Sorted";
+    if(s == "-sorted") return "Sorted";
+    if(s == "-rev") return "Reversed";
+    return "";
+}
+
 double calRunningTime(clock_t start, clock_t end)
 {
     return double(end - start) / double(CLOCKS_PER_SEC);
@@ -76,8 +94,8 @@ bool readInput(string file_path, int *&arr, int &size)
 
 bool writeOutput(string file_path, int *arr, int size)
 {
-    ofstream file;
-    file.open(file_path);
+    fstream file;
+    file.open(file_path, ios::out);
     if (file.fail())
         return false;
     else
