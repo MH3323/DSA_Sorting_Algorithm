@@ -1,6 +1,9 @@
 #include "InputAndOutput.h"
 #include "DataGenerator.h"
 #include "Sort.h"
+#include "DataGenerator.cpp"
+#include "InputAndOutput.cpp"
+#include "Sort.cpp"
 #include <string>
 
 // Constants for mode
@@ -19,7 +22,9 @@ int main(int argc, char *argv[])
         cout << "ALGORITHM MODE\n";
         if (typeSort(string(argv[2])) != -1)
         {
+
             cout << "Algorithm: " << argv[2] << endl;
+
             if (argc == 5)
             {
                 // Here is code for command 1 and command 3
@@ -31,6 +36,54 @@ int main(int argc, char *argv[])
                     {
                         // Here is code for command 3
                         cout << "Command 3";
+                        size = atoi(argv[3]);
+                        parameter = string(argv[5]);
+                        arr = new int[size];
+                        cout << "Algorithm: " << argv[2] << endl;
+                        cout << "Input Size: " << size << endl;
+                        if (parameter == "-time")
+                        {
+                            cout << endl;
+                            for (int i = 0; i < 4; i++)
+                            {
+                                cout << "Input order: " << type(i);
+                                printDivide();
+                                GenerateData(arr, size, 0);
+                                writeOutput("input.txt", arr, size);
+                                SortData(typeSort(string(argv[2])), start, end, comparisons, arr, size);
+                                writeOutput("output.txt", arr, size);
+                                cout << "Runnng time: " << calRunningTime(start, end) << endl;
+                            }
+                        }
+                        if (parameter == "-comp")
+                        {
+                            string comp = "_p_comp";
+                            cout << endl;
+                            for (int i = 0; i < 4; i++)
+                            {
+                                cout << "Input order: " << type(i);
+                                printDivide();
+                                GenerateData(arr, size, 0);
+                                writeOutput("input.txt", arr, size);
+                                SortData(typeSort(string(argv[2])), start, end, comparisons, arr, size);
+                                writeOutput("output.txt", arr, size);
+                                printParameter_AMode(calRunningTime(start, end), comparisons, comp);
+                            }
+                        }
+                        else
+                        {
+                            cout << endl;
+                            for (int i = 0; i < 4; i++)
+                            {
+                                cout << "Input order: " << type(i);
+                                printDivide();
+                                GenerateData(arr, size, 0);
+                                writeOutput("input.txt", arr, size);
+                                SortData(typeSort(string(argv[2])), start, end, comparisons, arr, size);
+                                writeOutput("output.txt", arr, size);
+                                printParameter_AMode(calRunningTime(start, end), comparisons, parameter);
+                            }
+                        }
                     }
                     else
                     {
@@ -54,7 +107,7 @@ int main(int argc, char *argv[])
             {
                 // Here is code for command 2
                 size = stoi(string(argv[3]));
-                if(typeOrder(string(argv[4])) == -1)
+                if (typeOrder(string(argv[4])) == -1)
                     cout << "No order.\n";
                 else
                 {
@@ -69,7 +122,7 @@ int main(int argc, char *argv[])
                         printDivide();
                         SortData(typeSort(string(argv[2])), start, end, comparisons, arr, size);
                         printParameter_AMode(calRunningTime(start, end), comparisons, parameter);
-                        writeOutput("output.txt",arr,size);
+                        writeOutput("output.txt", arr, size);
                     }
                     else
                         cout << "There hasn't this parameter.\n";
@@ -113,9 +166,9 @@ int main(int argc, char *argv[])
             {
                 cout << "Open file fails!\n";
             }
-
         }
-        else if (argc == 6)     {
+        else if (argc == 6)
+        {
             // Here is code for command 5
             int Algorithm_1 = typeSort(string(argv[2])), Algorithm_2 = typeSort(string(argv[3]));
             if (Algorithm_1 == -1 || Algorithm_2 == -1)
@@ -148,7 +201,7 @@ int main(int argc, char *argv[])
 
     // Print test
     // printDivide();
-    
+
     // Delete pointer
     delete[] arr;
 }

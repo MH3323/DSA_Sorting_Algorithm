@@ -22,6 +22,7 @@ bool isParameter(string s);
 int typeSort(string s);
 int typeOrder(string s);
 string typeOrder_String(string s);
+string type(int i);
 
 double calRunningTime(clock_t start, clock_t end);
 
