@@ -47,20 +47,50 @@ int typeSort(string s)
 
 int typeOrder(string s)
 {
-    if(s == "-rand") return type_rand;
-    if(s == "-nsorted") return type_nsorted;
-    if(s == "-sorted") return type_sorted;
-    if(s == "-rev") return type_rev;
+    if (s == "-rand")
+        return type_rand;
+    if (s == "-nsorted")
+        return type_nsorted;
+    if (s == "-sorted")
+        return type_sorted;
+    if (s == "-rev")
+        return type_rev;
     return -1;
-} 
+}
 
 string typeOrder_String(string s)
 {
-    if(s == "-rand") return "Randomized";
-    if(s == "-nsorted") return "Nearly Sorted";
-    if(s == "-sorted") return "Sorted";
-    if(s == "-rev") return "Reversed";
+    if (s == "-rand")
+        return "Randomized";
+    if (s == "-nsorted")
+        return "Nearly Sorted";
+    if (s == "-sorted")
+        return "Sorted";
+    if (s == "-rev")
+        return "Reversed";
     return "";
+}
+
+string typeOrder_Num(int i)
+{
+    if (i == 0)
+        return "Randomized";
+    if (i == 1)
+        return "Nearly Sorted";
+    if (i == 2)
+        return "Sorted";
+    if (i == 3)
+        return "Reversed";
+    return "";
+}
+
+string nameSort(string arg_name)
+{
+    string name = arg_name;
+    name[0] -= 32;
+    name[name.find('-')] = ' ';
+    name[name.find(' ') + 1] -= 32;
+    return name;
 }
 
 double calRunningTime(clock_t start, clock_t end)
@@ -101,7 +131,7 @@ bool writeOutput(string file_path, int *arr, int size)
     else
     {
         file << size << endl;
-        if(arr != nullptr)
+        if (arr != nullptr)
             for (int i = 0; i < size; i++)
             {
                 file << arr[i] << " ";
@@ -138,6 +168,7 @@ void printParameter_CMode(double time_1, double time_2, long long int comp_1, lo
 
 void printDivide()
 {
+    cout << endl;
     for (int i = 0; i < 10; i++)
         cout << "-";
     cout << endl;
@@ -145,6 +176,6 @@ void printDivide()
 
 void printTest(int *arr, int size)
 {
-    for(int i = 0;i < size; i++) 
+    for (int i = 0; i < size; i++)
         cout << arr[i] << " ";
 }
