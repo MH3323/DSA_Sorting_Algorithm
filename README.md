@@ -25,7 +25,7 @@
     1. [Execution file] -a [Algorithm] [Given input] [Output parameter(s)]
     2. [Execution file] -a [Algorithm] [Input size] [Input order] [Output parameter(s)]
     3. [Execution file] -a [Algorithm] [Input size] [Output parameter(s)]
-    4. [Execution file] -a [Algorithm] [Input size] [Output parameter(s)]
+    4. [Execution file] -c [Algorithm 1] [Algorithm 2] [Given input]
     5. [Execution file] -c [Algorithm 1] [Algorithm 2] [Input size] [Input order]
 
     [Given input] is a path to input file

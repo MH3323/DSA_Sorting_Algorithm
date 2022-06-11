@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    cout << "Algorithm: " << setw(12) << argv[2] << "|" << setw(12) << argv[3] << end;
+                    cout << "Algorithm: " << setw(12) << argv[2] << " | " << setw(12) << argv[3] << endl;
                     cout << "Input file : " << argv[4] << endl;
                     cout << "Input size : " << size << endl;
                     printDivide();
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
                 SortData(Algorithm_1, start, end, comparisons, arr, size);
                 SortData(Algorithm_2, start2, end2, comparisons2, arr2, size);
                 printParameter_CMode(calRunningTime(start, end), calRunningTime(start2, end2), comparisons, comparisons2, _p_both);
-                delete[] arr2;
+                delete[]arr2;
             }
         }
     }
