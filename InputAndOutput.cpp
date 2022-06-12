@@ -140,29 +140,31 @@ bool writeOutput(string file_path, int *arr, int size)
     }
 }
 
+#define time_precision 30
+
 void printParameter_AMode(double time, long long int comparisions, string parameter)
 {
     if (parameter == _p_time)
-        cout << "Running time: " << left << setw(12) << time << endl;
+        cout << "Running time: " << fixed << setprecision(time_precision) << time << endl;
     else if (parameter == _p_comp)
-        cout << "Comparisions: " << left << setw(12) << comparisions << endl;
+        cout << "Comparisions: " << left << setw(14) << comparisions << endl;
     else if (parameter == _p_both)
     {
-        cout << "Running time: " << left << setw(12) << time << endl;
-        cout << "Comparisions: " << left << setw(12) << comparisions << endl;
+        cout << "Running time: " << fixed << setprecision(time_precision) << time << endl;
+        cout << "Comparisions: " << left << setw(14) << comparisions << endl;
     }
 }
 
 void printParameter_CMode(double time_1, double time_2, long long int comp_1, long long int comp_2, string parameter)
 {
     if (parameter == _p_time)
-        cout << "Running time: " << left << setw(12) << time_1 << " | " << left << setw(12) << time_2 << endl;
+        cout << "Running time: " << fixed << setprecision(time_precision) << time_1 << " | " << fixed << setprecision(time_precision) << time_2 << endl;
     else if (parameter == _p_comp)
-        cout << "Comparisions: " << left << setw(12) << comp_1 << " | " << left << setw(12) << comp_2 << endl;
+        cout << "Comparisions: " << left << setw(14) << comp_1 << " | " << left << setw(14) << comp_2 << endl;
     else if (parameter == _p_both)
     {
-        cout << "Running time: " << setw(12) << time_1 << " | " << setw(12) << time_2 << endl;
-        cout << "Comparisions: " << setw(12) << comp_1 << " | " << setw(12) << comp_2 << endl;
+        cout << "Running time: " << fixed << setprecision(time_precision) << time_1 << " | " << fixed << setprecision(time_precision) << time_2 << endl;
+        cout << "Comparisions: " << setw(14) << comp_1 << " | " << setw(14) << comp_2 << endl;
     }
 }
 
