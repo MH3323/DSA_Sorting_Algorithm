@@ -35,7 +35,26 @@ void selectionSort(int *&arr, int size, long long int &comparisons)
 }
 //---------------
 
+<<<<<<< Updated upstream
 void insertionSort(int *&arr, int size);
+=======
+void insertionSort(int *&arr, int size, long long int &comparisons)
+{
+    int index = 1, pick, insert;
+    while (index < size && ++comparisons)
+    {
+        pick = arr[index];
+        insert = index - 1;
+        while (insert >= 0 && ++comparisons && arr[insert] > pick && ++comparisons)
+        {
+            arr[insert + 1] = arr[insert];
+            insert = insert - 1;
+        }
+        arr[insert + 1] = pick;
+        ++index;
+    }
+}
+>>>>>>> Stashed changes
 
 void bubbleSort(int *&arr, int size, long long int &comparisons)
 {
@@ -134,9 +153,43 @@ void mergeSort(long long int &comparisons, int *&arr, int end, int begin)
     else
         return;
 }
+// Quick Sort
+int partition(int *&arr, int first, int last, long long int &comparisons)
+{
+    int lastS1 = first;
+    int firstUnknown = first + 1;
+    while (firstUnknown <= last && ++comparisons)
+    { 
+        if (arr[firstUnknown] < arr[first] && ++comparisons)
+            {
+                swap(arr[firstUnknown], arr[lastS1 + 1]);
+                lastS1 += 1;
+            }
+        firstUnknown = firstUnknown + 1;
+    }
+    swap(arr[lastS1], arr[first]);
+    return lastS1;
+}
+void doQuickSort(int *&arr, int first, int last, long long int &comparisons)
+{
+    if (first < last && ++comparisons)
+    {
+        int pivotIndex = partition(arr, first, last, comparisons);
+        doQuickSort(arr, first, pivotIndex - 1, comparisons);
+        doQuickSort(arr, pivotIndex + 1, last, comparisons);
+    }
+}
+void quickSort(int *&arr, int size, long long int &comparisons) {
+    int first = 0;
+    int last = size - 1;
+    doQuickSort(arr, first, last, comparisons);
+}
 
+<<<<<<< Updated upstream
 void quickSort(int *arr, int size);
 
+=======
+>>>>>>> Stashed changes
 // Radix sort
 int getMax(int *arr, int size)
 {
@@ -206,6 +259,7 @@ void shakerSort(int *&arr, int size, long long int &comparisons)
     }
 }
 
+<<<<<<< Updated upstream
 void shellSort(int *&arr, int size, long long int &comparisions)
 {
     int temp, j;
@@ -221,6 +275,31 @@ void shellSort(int *&arr, int size, long long int &comparisions)
             arr[j] = temp;
         }
     }
+=======
+void shellSort(int *arr, int size);
+
+void countingSort(int *arr, int size)
+{    
+    int *output = new int[size];
+
+    int *count = new int[size + 1];
+    int i;
+ 
+    for (i = 0; arr[i]; ++i)
+        ++count[arr[i]];
+ 
+    for (i = 1; i <= size; ++i)
+        count[i] += count[i - 1];
+ 
+
+    for (i = 0; arr[i]; ++i) {
+        output[count[arr[i]] - 1] = arr[i];
+        --count[arr[i]];
+    }
+ 
+    for (i = 0; arr[i]; ++i)
+        arr[i] = output[i];
+>>>>>>> Stashed changes
 }
 
 void flashSort(int *&arr, int size);
@@ -235,6 +314,9 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
         end = clock();
         break;
     case insertion:
+        start = clock();
+        insertionSort(arr, size, comparisons);
+        end = clock();
         break;
     case bubble:
         break;
@@ -249,6 +331,9 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
         end = clock();
         break;
     case quick:
+        start = clock();
+        quickSort(arr, size, comparisons);
+        end = clock();
         break;
     case radix:
         break;
