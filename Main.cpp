@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
                     if (isParameter(parameter))
                     {
                         cout << left << setw(12) << "Input size"
-                             << ":" << size << endl;
+                             << ": " << size << endl;
                         cout << left << setw(12) << "Input order"
                              << ": " << typeOrder_String(string(argv[4])) << endl;
                         printDivide();

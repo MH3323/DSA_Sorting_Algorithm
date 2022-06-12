@@ -35,9 +35,9 @@ void selectionSort(int *&arr, int size, long long int &comparisons)
 }
 //---------------
 
-void insertionSort(int *arr, int size);
+void insertionSort(int *&arr, int size);
 
-void bubbleSort(int *arr, int size, long long int &comparisons)
+void bubbleSort(int *&arr, int size, long long int &comparisons)
 {
     for (int i = 0; i < size - 1; i++)
         for (int j = 0; j < size - i - 1; j++)
@@ -136,6 +136,7 @@ void mergeSort(long long int &comparisons, int *&arr, int end, int begin)
 }
 
 void quickSort(int *arr, int size);
+
 // Radix sort
 int getMax(int *arr, int size)
 {
@@ -145,7 +146,7 @@ int getMax(int *arr, int size)
             max = arr[i];
     return max;
 }
-void countingSort(int *arr, int size, int place)
+void countingSort(int *&arr, int size, int place)
 {
     const int max = 10;
     int output[size];
@@ -169,14 +170,15 @@ void countingSort(int *arr, int size, int place)
     for (int i = 0; i < size; i++)
         arr[i] = output[i];
 }
-void radixSort(int *arr, int size, long long int &comparisons)
+void radixSort(int *&arr, int size, long long int &comparisons)
 {
     int max = getMax(arr, size);
     for (int place = 1; max / place > 0; place *= 10)
         countingSort(arr, size, place);
 }
 // -------------
-void shakerSort(int *arr, int size, long long int &comparisons)
+
+void shakerSort(int *&arr, int size, long long int &comparisons)
 {
     int Left = 0;
     int Right = size - 1;
@@ -204,11 +206,24 @@ void shakerSort(int *arr, int size, long long int &comparisons)
     }
 }
 
-void shellSort(int *arr, int size);
+void shellSort(int *&arr, int size, long long int &comparisions)
+{
+    int temp, j;
+    for (int gap = size / 2; ++comparisions && gap > 0; gap /= 2)
+    {
+        for (int i = gap; ++comparisions && i < size; i++)
+        {
+            temp = arr[i];
+            for (j = i; (++comparisions && j >= gap) && (++comparisions && arr[j - gap] > temp); j -= gap)
+            {
+                arr[j] = arr[j - gap];
+            }
+            arr[j] = temp;
+        }
+    }
+}
 
-void countingSort(int *arr, int size);
-
-void flashSort(int *arr, int size);
+void flashSort(int *&arr, int size);
 
 void SortData(int type_sort, clock_t &start, clock_t &end, long long int &comparisons, int *&arr, int size)
 {
@@ -243,6 +258,9 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
         end = clock();
         break;
     case shell:
+        start = clock();
+        shellSort(arr, size, comparisons);
+        end = clock();
         break;
     case counting:
         break;

@@ -42,6 +42,8 @@ int typeSort(string s)
         return counting;
     if (s == "flash-sort")
         return flash;
+    if (s == "shell-sort")
+        return shell;
     return -1;
 }
 
