@@ -158,28 +158,23 @@ int partition(int *&arr, int first, int last, long long int &comparisons)
     {
         if (arr[firstUnknown] < arr[first] && ++comparisons)
         {
-            swap(arr[firstUnknown], arr[lastS1 + 1]);
-            lastS1 += 1;
+            if(firstUnknown != lastS1)
+                swap(arr[firstUnknown], arr[lastS1 + 1]);
+            ++lastS1;
         }
-        firstUnknown = firstUnknown + 1;
+        ++firstUnknown;
     }
     swap(arr[lastS1], arr[first]);
     return lastS1;
 }
-void doQuickSort(int *&arr, int first, int last, long long int &comparisons)
+void quickSort(int *&arr, int first, int last, long long int &comparisons)
 {
     if (first < last && ++comparisons)
     {
         int pivotIndex = partition(arr, first, last, comparisons);
-        doQuickSort(arr, first, pivotIndex - 1, comparisons);
-        doQuickSort(arr, pivotIndex + 1, last, comparisons);
+        quickSort(arr, first, pivotIndex - 1, comparisons);
+        quickSort(arr, pivotIndex + 1, last, comparisons);
     }
-}
-void quickSort(int *&arr, int size, long long int &comparisons)
-{
-    int first = 0;
-    int last = size - 1;
-    doQuickSort(arr, first, last, comparisons);
 }
 
 // Radix sort
@@ -322,7 +317,7 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
         break;
     case quick:
         start = clock();
-        quickSort(arr, size, comparisons);
+        quickSort(arr, 0, size - 1, comparisons);
         end = clock();
         break;
     case radix:

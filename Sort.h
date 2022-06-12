@@ -32,8 +32,7 @@ void mergeSort(long long int &comparisons, int *&arr, int end, int begin = 0);
 
 // Quick sort
 int partition(int *&arr, int first, int last, long long int &comparisons);
-void doQuickSort(int *&arr, int first, int last, long long int &comparisons);
-void quickSort(int *&arr, int size, long long int &comparisons);
+void quickSort(int *&arr, int first, int last, long long int &comparisons);
 
 void radixSort(int *arr, int size);
 void shakerSort(int *&arr, int size, long long int &comparisons);
