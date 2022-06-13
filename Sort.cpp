@@ -34,8 +34,7 @@ void selectionSort(int *&arr, int size, long long int &comparisons)
         left--;
     }
 }
-//---------------
-
+//-----------------------------------------------------------------
 void insertionSort(int *&arr, int size, long long int &comparisons)
 {
     int index = 1, pick, insert;
@@ -60,6 +59,7 @@ void bubbleSort(int *&arr, int size, long long int &comparisons)
             if (arr[j] > arr[j + 1])
                 swap(arr[j], arr[j + 1]);
 }
+
 // Heap sort
 void heapify(int arr[], int size, int i, long long int &comparisons)
 {
@@ -88,7 +88,7 @@ void heapSort(int arr[], int size, long long int &comparisons)
         heapify(arr, i, 0, comparisons);
     }
 }
-
+//-----------------------------------------------------------------
 // Merge sort
 void merge2Array(int *&arr, int left, int mid, int right, long long int &comparisons)
 {
@@ -138,6 +138,7 @@ void merge2Array(int *&arr, int left, int mid, int right, long long int &compari
     delete[] subArrayOne;
     delete[] subArrayTwo;
 }
+
 void mergeSort(long long int &comparisons, int *&arr, int end, int begin)
 {
     if (++comparisons && end > begin)
@@ -150,24 +151,39 @@ void mergeSort(long long int &comparisons, int *&arr, int end, int begin)
     else
         return;
 }
+//-----------------------------------------------------------------
 // Quick Sort
+void sortFirstMiddleLast(int *&arr, int first, int mid, int last, long long int &comparisons)
+{
+    if (++comparisons && arr[first] > arr[mid])
+        swap(arr[first], arr[mid]);
+    if (++comparisons && arr[mid] > arr[last])
+        swap(arr[mid], arr[last]);
+    if (++comparisons && arr[first] > arr[mid])
+        swap(arr[first], arr[mid]);
+}
+
 int partition(int *&arr, int first, int last, long long int &comparisons)
 {
-    int lastS1 = first;
-    int firstUnknown = first + 1;
-    while (firstUnknown <= last && ++comparisons)
+    int mid = first + (last - first) / 2;
+    sortFirstMiddleLast(arr, first, mid, last, comparisons);
+    swap(arr[mid], arr[last - 1]);
+    int pivotIndex = last;
+    int pivot = arr[pivotIndex];
+    int indexFromLeft = first - 1;
+    int indexFromRight = last;
+    while (true)
     {
-        if (arr[firstUnknown] < arr[first] && ++comparisons)
-        {
-            if (firstUnknown != lastS1)
-                swap(arr[firstUnknown], arr[lastS1 + 1]);
-            ++lastS1;
-        }
-        ++firstUnknown;
+        while (++comparisons && arr[++indexFromLeft] < pivot);
+        while (++comparisons && arr[--indexFromRight] > pivot);
+        if (++comparisons && indexFromLeft > indexFromRight) break;
+        swap(arr[indexFromLeft], arr[indexFromRight]);
     }
-    swap(arr[lastS1], arr[first]);
-    return lastS1;
+    swap(arr[pivotIndex], arr[indexFromLeft]);
+    pivotIndex = indexFromLeft;
+    return pivotIndex;
 }
+
 void quickSort(int *&arr, int first, int last, long long int &comparisons)
 {
     if (first < last && ++comparisons)
@@ -177,48 +193,48 @@ void quickSort(int *&arr, int first, int last, long long int &comparisons)
         quickSort(arr, pivotIndex + 1, last, comparisons);
     }
 }
-
+//-----------------------------------------------------------------
 // Radix sort
-int getMax(int *arr, int size)
+int getMax(int *arr, int size, long long int &comparisons)
 {
     int max = arr[0];
-    for (int i = 1; i < size; i++)
-        if (arr[i] > max)
+    for (int i = 1; ++comparisons && i < size; i++)
+        if (++comparisons && arr[i] > max)
             max = arr[i];
     return max;
 }
 
-void radixCount(int *&arr, int size, int place)
+void radixCount(int *&arr, int size, int place, long long int &comparisons)
 {
     const int max = 10;
     int output[size];
     int count[max];
 
-    for (int i = 0; i < max; ++i)
+    for (int i = 0; ++comparisons && i < max; ++i)
         count[i] = 0;
-
-    for (int i = 0; i < size; i++)
+    for (int i = 0; ++comparisons && i < size; i++)
         count[(arr[i] / place) % 10]++;
 
-    for (int i = 1; i < max; i++)
+    for (int i = 1; ++comparisons && i < max; i++)
         count[i] += count[i - 1];
 
-    for (int i = size - 1; i >= 0; i--)
+    for (int i = size - 1; ++comparisons && i >= 0; i--)
     {
         output[count[(arr[i] / place) % 10] - 1] = arr[i];
         count[(arr[i] / place) % 10]--;
     }
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0; ++comparisons && i < size; i++)
         arr[i] = output[i];
 }
+
 void radixSort(int *&arr, int size, long long int &comparisons)
 {
     int max = getMax(arr, size);
     for (int place = 1; ++comparisons && (max / place) > 0; place *= 10)
         radixCount(arr, size, place);
 }
-// -------------
+//-----------------------------------------------------------------
 
 void shakerSort(int *&arr, int size, long long int &comparisons)
 {
@@ -248,15 +264,15 @@ void shakerSort(int *&arr, int size, long long int &comparisons)
     }
 }
 
-void shellSort(int *&arr, int size, long long int &comparisions)
+void shellSort(int *&arr, int size, long long int &comparisons)
 {
     int temp, j;
-    for (int gap = size / 2; ++comparisions && gap > 0; gap /= 2)
+    for (int gap = size / 2; ++comparisons && gap > 0; gap /= 2)
     {
-        for (int i = gap; ++comparisions && i < size; i++)
+        for (int i = gap; ++comparisons && i < size; i++)
         {
             temp = arr[i];
-            for (j = i; (++comparisions && j >= gap) && (++comparisions && arr[j - gap] > temp); j -= gap)
+            for (j = i; (++comparisons && j >= gap) && (++comparisons && arr[j - gap] > temp); j -= gap)
             {
                 arr[j] = arr[j - gap];
             }
@@ -265,31 +281,31 @@ void shellSort(int *&arr, int size, long long int &comparisions)
     }
 }
 
-void countingSort(int *arr, int size)
+void countingSort(int *&arr, int size, long long int &comparisons)
 {
+    int max = getMax(arr, size);
     int *output = new int[size];
+    int *count = new int[max];
+    for (int i = 0; ++comparisons && i <= max; ++i)
+        count[i] = 0;
+    for (int i = 0; ++comparisons && i < size; i++)
+        count[arr[i]]++;
 
-    int *count = new int[size + 1];
-    int i;
-
-    for (i = 0; arr[i]; ++i)
-        ++count[arr[i]];
-
-    for (i = 1; i <= size; ++i)
+    for (int i = 1; ++comparisons && i <= max; i++)
         count[i] += count[i - 1];
 
-    for (i = 0; arr[i]; ++i)
+    for (int i = size - 1; ++comparisons && i >= 0; i--)
     {
         output[count[arr[i]] - 1] = arr[i];
-        --count[arr[i]];
+        count[arr[i]]--;
     }
 
-    for (i = 0; arr[i]; ++i)
+    for (int i = 0; ++comparisons && i < size; i++)
         arr[i] = output[i];
 }
 
 void flashSort(int *&arr, int size);
-
+// SORT DATA
 void SortData(int type_sort, clock_t &start, clock_t &end, long long int &comparisons, int *&arr, int size)
 {
     switch (type_sort)
@@ -305,7 +321,6 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
         end = clock();
         break;
     case bubble:
-        bubbleSort(arr, size, comparisons);
         break;
     case heap:
         start = clock();
@@ -336,6 +351,9 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
         end = clock();
         break;
     case counting:
+        start = clock();
+        countingSort(arr, size, comparisons);
+        end = clock();
         break;
     case flash:
         break;

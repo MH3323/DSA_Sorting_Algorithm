@@ -66,18 +66,18 @@ int main(int argc, char *argv[])
                             writeOutput("output.txt", arr, size);
                         }
                         else
-                            cout << "Reading the data file was failing.\n";
+                            cout << "Failed to read data from the file.\n";
                     }
                 }
                 else
-                    cout << "There hasn't this parameter.\n";
+                    cout << "Invalid parameter.\n";
             }
             else if (argc == 6)
             {
                 // Here is code for command 2
                 size = stoi(string(argv[3]));
                 if (typeOrder(string(argv[4])) == -1)
-                    cout << "No order.\n";
+                    cout << "Invalid order.\n";
                 else
                 {
                     arr = new int[size];
@@ -96,12 +96,12 @@ int main(int argc, char *argv[])
                         writeOutput("output.txt", arr, size);
                     }
                     else
-                        cout << "There hasn't this parameter.\n";
+                        cout << "Invalid parameter.\n";
                 }
             }
         }
         else
-            cout << "There hasn't this algorithm.\n";
+            cout << "Invalid algorithm.\n";
     }
     else if (string(argv[1]) == string(compare_mode))
     {
@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
                 int Algorithm_1 = typeSort(string(argv[2])), Algorithm_2 = typeSort(string(argv[3]));
                 if (Algorithm_1 == -1 || Algorithm_2 == -1)
                 {
-                    cout << "There hasn't this algorithm.\n";
+                    cout << "Invalid algorithm.\n";
                 }
                 else
                 {
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                cout << "Open file fails!\n";
+                cout << "Failed to read data from the file.\n";
             }
         }
         else if (argc == 6)
@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
             int Algorithm_1 = typeSort(string(argv[2])), Algorithm_2 = typeSort(string(argv[3]));
             if (Algorithm_1 == -1 || Algorithm_2 == -1)
             {
-                cout << "There hasn't this algorithm.\n";
+                cout << "Invalid algorithm.\n";
             }
             else
             {
@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        cout << "Don't have this command.\n";
+        cout << "Invalid command.\n";
     }
 
     // Print test
