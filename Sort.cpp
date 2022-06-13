@@ -1,4 +1,5 @@
 #include "Sort.h"
+#include "InputAndOutput.h"
 
 // Selections sort
 int indexMax(int *arr, int size, long long int &comparisons)
@@ -17,9 +18,9 @@ int indexMax(int *arr, int size, long long int &comparisons)
 
 void swap(int &a, int &b)
 {
-    a = a + b;
-    b = a - b;
-    a = a - b;
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
 void selectionSort(int *&arr, int size, long long int &comparisons)
@@ -28,8 +29,8 @@ void selectionSort(int *&arr, int size, long long int &comparisons)
     while (++comparisons && left >= 1)
     {
         index = indexMax(arr, left, comparisons);
-        if (++comparisons && left != index)
-            swap(arr[left], arr[index]);
+        // if (++comparisons && left != index)
+        swap(arr[left], arr[index]);
         left--;
     }
 }
