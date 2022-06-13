@@ -305,6 +305,7 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
         end = clock();
         break;
     case bubble:
+        bubbleSort(arr, size, comparisons);
         break;
     case heap:
         start = clock();

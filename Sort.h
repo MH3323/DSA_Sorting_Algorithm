@@ -23,7 +23,7 @@ void swap(int &a, int &b);
 void selectionSort(int *&&arr, int size, long long int &comparisons);
 
 void insertionSort(int *&arr, int size, long long int &comparisons);
-void bubbleSort(int *arr, int size);
+void bubbleSort(int *&arr, int size, long long int &comparisons);
 void heapSort(int *arr, int size, long long int &comparisons);
 
 // Merge sort
