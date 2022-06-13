@@ -34,7 +34,10 @@ void mergeSort(long long int &comparisons, int *&arr, int end, int begin = 0);
 int partition(int *&arr, int first, int last, long long int &comparisons);
 void quickSort(int *&arr, int first, int last, long long int &comparisons);
 
-void radixSort(int *arr, int size);
+int getMax(int *arr, int size);
+void radixCount(int *&arr, int size, int place);
+void radixSort(int *&arr, int size, long long int &comparisons);
+
 void shakerSort(int *&arr, int size, long long int &comparisons);
 void shellSort(int *&arr, int size, long long int &comparisons);
 void countingSort(int *arr, int size);

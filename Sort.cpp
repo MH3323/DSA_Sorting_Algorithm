@@ -159,7 +159,7 @@ int partition(int *&arr, int first, int last, long long int &comparisons)
     {
         if (arr[firstUnknown] < arr[first] && ++comparisons)
         {
-            if(firstUnknown != lastS1)
+            if (firstUnknown != lastS1)
                 swap(arr[firstUnknown], arr[lastS1 + 1]);
             ++lastS1;
         }
@@ -188,7 +188,7 @@ int getMax(int *arr, int size)
     return max;
 }
 
-void countingSort(int *&arr, int size, int place)
+void radixCount(int *&arr, int size, int place)
 {
     const int max = 10;
     int output[size];
@@ -215,8 +215,8 @@ void countingSort(int *&arr, int size, int place)
 void radixSort(int *&arr, int size, long long int &comparisons)
 {
     int max = getMax(arr, size);
-    for (int place = 1; max / place > 0; place *= 10)
-        countingSort(arr, size, place);
+    for (int place = 1; ++comparisons && (max / place) > 0; place *= 10)
+        radixCount(arr, size, place);
 }
 // -------------
 
@@ -322,6 +322,7 @@ void SortData(int type_sort, clock_t &start, clock_t &end, long long int &compar
         end = clock();
         break;
     case radix:
+        radixSort(arr, size, comparisons);
         break;
     case shaker:
         start = clock();
