@@ -1,5 +1,4 @@
 #include "Sort.h"
-#include "InputAndOutput.h"
 
 // Selections sort
 int indexMax(int *arr, int size, long long int &comparisons)

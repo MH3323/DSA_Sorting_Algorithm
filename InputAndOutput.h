@@ -4,28 +4,9 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include "constant.h"
+
 using namespace std;
-
-// Constants for parameter
-#define _p_time "-time"
-#define _p_comp "-comp"
-#define _p_both "-both"
-
-// Constant for data type
-const int type_rand = 0;    // Randomized data
-const int type_sorted = 1;  // Sorted data
-const int type_rev = 2;     // Reverse sorted data
-const int type_nsorted = 3; // Nearly sorted data
-
-bool isAllDigits(string s);
-bool isParameter(string s);
-int typeSort(string s);
-int typeOrder(string s);
-string typeOrder_String(string s);
-string typeOrder_Num(int i);
-string nameSort(string arg_name);
-
-double calRunningTime(clock_t start, clock_t end);
 
 bool readInput(string file_path, int *&arr, int &size);
 bool writeOutput(string file_path, int *arr, int size);

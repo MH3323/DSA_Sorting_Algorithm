@@ -2,20 +2,9 @@
 #include <fstream>
 #include <cmath>
 #include <time.h>
-using namespace std;
+#include "constant.h"
 
-// Constant for type of sorting algoritm
-#define selection 0
-#define insertion 1
-#define bubble 2
-#define heap 3
-#define merge 4
-#define quick 5
-#define radix 6
-#define shaker 7
-#define shell 8
-#define counting 9
-#define flash 10
+using namespace std;
 
 // Selection sort
 int indexMax(int *arr, int size, long long int &comparisons);

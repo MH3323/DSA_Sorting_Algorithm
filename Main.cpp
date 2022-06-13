@@ -1,11 +1,9 @@
+#include <string>
 #include "DataGenerator.h"
 #include "InputAndOutput.h"
 #include "Sort.h"
-#include <string>
-
-// Constants for mode
-#define algorithm_mode "-a"
-#define compare_mode "-c"
+#include "constant.h"
+#include "argumentControl.h"
 
 int main(int argc, char *argv[])
 {
