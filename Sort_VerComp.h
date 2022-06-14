@@ -8,7 +8,6 @@ using namespace std;
 
 // Selection sort
 int indexMax(int *arr, int size, long long int &comparisons);
-void swap(int &a, int &b);
 void selectionSort(int *&&arr, int size, long long int &comparisons);
 
 void insertionSort(int *&arr, int size, long long int &comparisons);
@@ -32,4 +31,4 @@ void shakerSort(int *&arr, int size, long long int &comparisons);
 void shellSort(int *&arr, int size, long long int &comparisons);
 void countingSort(int *&arr, int size, long long int &comparisons);
 void flashSort(int arr, int size);
-void SortData(int type_sort, clock_t &start, clock_t &end, long long int &comparisons, int *&arr, int size);
+void SortData_Ver_Comp(int type_sort, long long int &comparisons, int *&arr, int size);

@@ -1,4 +1,4 @@
-#include "Sort.h"
+#include "Sort_VerComp.h"
 
 // Selections sort
 int indexMax(int *arr, int size, long long int &comparisons)
@@ -13,13 +13,6 @@ int indexMax(int *arr, int size, long long int &comparisons)
         }
     }
     return index_max;
-}
-
-void swap(int &a, int &b)
-{
-    int temp = a;
-    a = b;
-    b = temp;
 }
 
 void selectionSort(int *&arr, int size, long long int &comparisons)
@@ -308,54 +301,39 @@ void countingSort(int *&arr, int size, long long int &comparisons)
 
 void flashSort(int *&arr, int size);
 // SORT DATA
-void SortData(int type_sort, clock_t &start, clock_t &end, long long int &comparisons, int *&arr, int size)
+void SortData_Ver_Comp(int type_sort, long long int &comparisons, int *&arr, int size)
 {
     switch (type_sort)
     {
     case selection:
-        start = clock();
         selectionSort(arr, size, comparisons);
-        end = clock();
         break;
     case insertion:
-        start = clock();
         insertionSort(arr, size, comparisons);
-        end = clock();
         break;
     case bubble:
+        bubbleSort(arr, size, comparisons);
         break;
     case heap:
-        start = clock();
         heapSort(arr, size, comparisons);
-        end = clock();
         break;
     case merge:
-        start = clock();
         mergeSort(comparisons, arr, size - 1);
-        end = clock();
         break;
     case quick:
-        start = clock();
         quickSort(arr, 0, size - 1, comparisons);
-        end = clock();
         break;
     case radix:
         radixSort(arr, size, comparisons);
         break;
     case shaker:
-        start = clock();
         shakerSort(arr, size, comparisons);
-        end = clock();
         break;
     case shell:
-        start = clock();
         shellSort(arr, size, comparisons);
-        end = clock();
         break;
     case counting:
-        start = clock();
         countingSort(arr, size, comparisons);
-        end = clock();
         break;
     case flash:
         break;

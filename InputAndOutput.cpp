@@ -44,28 +44,36 @@ bool writeOutput(string file_path, int *arr, int size)
 
 #define time_precision 30
 
-void printParameter_AMode(double time, long long int comparisions, string parameter)
+void printParameter_AMode(std::chrono::high_resolution_clock::time_point start,
+                          std::chrono::high_resolution_clock::time_point end,
+                          long long int comparisions, string parameter)
 {
     if (parameter == _p_time)
-        cout << "Running time: " << fixed << setprecision(time_precision) << time << endl;
+        cout << "Running time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << endl;
     else if (parameter == _p_comp)
         cout << "Comparisions: " << left << setw(14) << comparisions << endl;
     else if (parameter == _p_both)
     {
-        cout << "Running time: " << fixed << setprecision(time_precision) << time << endl;
+        cout << "Running time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << endl;
         cout << "Comparisions: " << left << setw(14) << comparisions << endl;
     }
 }
 
-void printParameter_CMode(double time_1, double time_2, long long int comp_1, long long int comp_2, string parameter)
+void printParameter_CMode(std::chrono::high_resolution_clock::time_point start,
+                          std::chrono::high_resolution_clock::time_point end,
+                          std::chrono::high_resolution_clock::time_point start2,
+                          std::chrono::high_resolution_clock::time_point end2,
+                          long long int comp_1, long long int comp_2, string parameter)
 {
     if (parameter == _p_time)
-        cout << "Running time: " << fixed << setprecision(time_precision) << time_1 << " | " << fixed << setprecision(time_precision) << time_2 << endl;
+        cout << "Running time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+             << " | " << std::chrono::duration_cast<std::chrono::milliseconds>(end2 - start2).count() << endl;
     else if (parameter == _p_comp)
         cout << "Comparisions: " << left << setw(14) << comp_1 << " | " << left << setw(14) << comp_2 << endl;
     else if (parameter == _p_both)
     {
-        cout << "Running time: " << fixed << setprecision(time_precision) << time_1 << " | " << fixed << setprecision(time_precision) << time_2 << endl;
+        cout << "Running time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+             << " | " << std::chrono::duration_cast<std::chrono::milliseconds>(end2 - start2).count() << endl;
         cout << "Comparisions: " << setw(14) << comp_1 << " | " << setw(14) << comp_2 << endl;
     }
 }

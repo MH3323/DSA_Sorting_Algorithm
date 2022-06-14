@@ -1,13 +1,13 @@
 #include <string>
+#include <chrono>
 #include "DataGenerator.h"
 #include "InputAndOutput.h"
-#include "Sort.h"
 #include "constant.h"
 #include "argumentControl.h"
 
 int main(int argc, char *argv[])
 {
-    clock_t start, end;
+    std::chrono::high_resolution_clock::time_point start, done;
     string temp = "", parameter = "", name_file = "";
     int *arr = nullptr;
     int size = 0;
@@ -44,8 +44,8 @@ int main(int argc, char *argv[])
                             GenerateData(arr, size, i);
                             name_file = "input_" + to_string(i + 1) + ".txt";
                             writeOutput(name_file, arr, size);
-                            SortData(typeSort(string(argv[2])), start, end, comparisons, arr, size);
-                            printParameter_AMode(calRunningTime(start, end), comparisons, parameter);
+                            SortData(typeSort(string(argv[2])), start, done, comparisons, arr, size, parameter);
+                            printParameter_AMode(start, done, comparisons, parameter);
                             name_file = "";
                         }
                     }
@@ -59,8 +59,8 @@ int main(int argc, char *argv[])
                             cout << left << setw(12) << "Input size"
                                  << ": " << size << endl;
                             printDivide();
-                            SortData(typeSort(string(argv[2])), start, end, comparisons, arr, size);
-                            printParameter_AMode(calRunningTime(start, end), comparisons, parameter);
+                            SortData(typeSort(string(argv[2])), start, done, comparisons, arr, size, parameter);
+                            printParameter_AMode(start, done, comparisons, parameter);
                             writeOutput("output.txt", arr, size);
                         }
                         else
@@ -89,8 +89,8 @@ int main(int argc, char *argv[])
                         cout << left << setw(12) << "Input order"
                              << ": " << typeOrder_String(string(argv[4])) << endl;
                         printDivide();
-                        SortData(typeSort(string(argv[2])), start, end, comparisons, arr, size);
-                        printParameter_AMode(calRunningTime(start, end), comparisons, parameter);
+                        SortData(typeSort(string(argv[2])), start, done, comparisons, arr, size, parameter);
+                        printParameter_AMode(start, done, comparisons, parameter);
                         writeOutput("output.txt", arr, size);
                     }
                     else
@@ -126,11 +126,11 @@ int main(int argc, char *argv[])
                     int *arr2 = new int[size];
                     for (int i = 0; i < size; i++)
                         arr2[i] = arr[i];
-                    clock_t start2, end2;
+                    std::chrono::high_resolution_clock::time_point start2, done2;
                     long long int comparisons2 = 0;
-                    SortData(Algorithm_1, start, end, comparisons, arr, size);
-                    SortData(Algorithm_2, start2, end2, comparisons2, arr2, size);
-                    printParameter_CMode(calRunningTime(start, end), calRunningTime(start2, end2), comparisons, comparisons2, _p_both);
+                    SortData(Algorithm_1, start, done, comparisons, arr, size, parameter);
+                    SortData(Algorithm_2, start2, done2, comparisons2, arr2, size, parameter);
+                    printParameter_CMode(start, done, start2, done2, comparisons, comparisons2, parameter);
                     delete[] arr2;
                 }
             }
@@ -163,11 +163,11 @@ int main(int argc, char *argv[])
                 int *arr2 = new int[size];
                 for (int i = 0; i < size; i++)
                     arr2[i] = arr[i];
-                clock_t start2, end2;
+                std::chrono::high_resolution_clock::time_point start2, done2;
                 long long int comparisons2 = 0;
-                SortData(Algorithm_1, start, end, comparisons, arr, size);
-                SortData(Algorithm_2, start2, end2, comparisons2, arr2, size);
-                printParameter_CMode(calRunningTime(start, end), calRunningTime(start2, end2), comparisons, comparisons2, _p_both);
+                SortData(Algorithm_1, start, done, comparisons, arr, size, parameter);
+                SortData(Algorithm_2, start2, done2, comparisons2, arr2, size, parameter);
+                printParameter_CMode(start, done, start2, done2, comparisons, comparisons2, parameter);
                 delete[] arr2;
             }
         }

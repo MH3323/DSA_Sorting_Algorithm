@@ -1,6 +1,8 @@
 #include <string>
-#include <time.h>
+#include <chrono>
 #include "constant.h"
+#include "Sort_VerComp.h"
+#include "Sort_VerTime.h"
 
 using namespace std;
 
@@ -12,4 +14,6 @@ string typeOrder_String(string s);
 string typeOrder_Num(int i);
 string nameSort(string arg_name);
 
-double calRunningTime(clock_t start, clock_t end);
+int *copyArrayPointer(int *arr, int size);
+
+void SortData(int type_sort, std::chrono::high_resolution_clock::time_point &start, std::chrono::high_resolution_clock::time_point &done, long long int &comparisons, int *&arr, int size, string parameter_type);

@@ -94,7 +94,37 @@ string nameSort(string arg_name)
     return name;
 }
 
-double calRunningTime(clock_t start, clock_t end)
+int *copyArrayPointer(int *arr, int size)
 {
-    return double(end - start) / double(CLOCKS_PER_SEC);
+    int *ret_arr = nullptr;
+    if (arr == nullptr)
+        return ret_arr;
+    else
+    {
+        ret_arr = new int[size];
+        for (int i = 0; i < size; i++)
+        {
+            ret_arr[i] = arr[i];
+        }
+        return ret_arr;
+    }
+}
+
+void SortData(int type_sort, std::chrono::high_resolution_clock::time_point &start, std::chrono::high_resolution_clock::time_point &done, long long int &comparisons, int *&arr, int size, string parameter_type)
+{
+    if (parameter_type == _p_time)
+    {
+        SortData_Ver_Time(type_sort, start, done, arr, size);
+    }
+    else if (parameter_type == _p_comp)
+    {
+        SortData_Ver_Comp(type_sort, comparisons, arr, size);
+    }
+    else if (parameter_type == _p_both)
+    {
+        int *copy_arr = copyArrayPointer(arr, size);
+        SortData_Ver_Time(type_sort, start, done, arr, size);
+        SortData_Ver_Comp(type_sort, comparisons, copy_arr, size);
+        delete[] copy_arr;
+    }
 }

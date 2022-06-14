@@ -27,3 +27,8 @@
 #define _p_time "-time"
 #define _p_comp "-comp"
 #define _p_both "-both"
+
+// Constant for calculating the executable time
+
+#define start_time std::chrono::high_resolution_clock::now()
+#define end_time std::chrono::high_resolution_clock::now()
