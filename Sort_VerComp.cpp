@@ -30,11 +30,11 @@ void selectionSort(int *&arr, int size, long long int &comparisons)
 void insertionSort(int *&arr, int size, long long int &comparisons)
 {
     int index = 1, pick, insert;
-    while (index < size && ++comparisons)
+    while (++comparisons && index < size)
     {
         pick = arr[index];
         insert = index - 1;
-        while (insert >= 0 && ++comparisons && arr[insert] > pick && ++comparisons)
+        while (++comparisons && insert >= 0 && ++comparisons && arr[insert] > pick)
         {
             arr[insert + 1] = arr[insert];
             insert = insert - 1;
@@ -181,7 +181,7 @@ int partition(int *&arr, int first, int last, long long int &comparisons)
 
 void quickSort(int *&arr, int first, int last, long long int &comparisons)
 {
-    if (first < last && ++comparisons)
+    if (++comparisons && first < last)
     {
         int pivotIndex = partition(arr, first, last, comparisons);
         quickSort(arr, first, pivotIndex - 1, comparisons);
