@@ -1,5 +1,14 @@
 #include "Sort_VerComp.h"
 
+int findMin(int *arr, int size, long long int &comparisons)
+{
+    int min = arr[0];
+    for (int i = 1; ++comparisons && i < size; i++)
+        if (++comparisons && arr[i] < min)
+            min = arr[i];
+    return min;
+}
+
 // Selections sort
 int indexMax(int *arr, int size, long long int &comparisons)
 {
@@ -299,7 +308,59 @@ void countingSort(int *&arr, int size, long long int &comparisons)
         arr[i] = output[i];
 }
 
-void flashSort(int *&arr, int size);
+void flashSort(int *&arr, int size, long long int &comparisons)
+{
+    // CLASSIFICATION
+
+    int index_max = indexMax(arr, size, comparisons);
+    int minVal = findMin(arr, size, comparisons);
+    int num_of_class = int(float(0.45) * size);
+    int *classification = new int[num_of_class];
+    const int delta = int((num_of_class - 1) / (arr[index_max] - minVal));
+
+    if (++comparisons && minVal == arr[index_max])
+        return;
+
+    // The loop below is to count element in each class
+    for (int i = 0; ++comparisons && i < num_of_class; i++)
+        classification[i] = 0;
+    for (int i = 0; ++comparisons && i < size; i++)
+    {
+        ++classification[delta * (arr[i] - minVal)];
+    }
+
+    // This loop uses to calculate the index of last element in each class.
+    for (int i = 1; ++comparisons && i < num_of_class; i++)
+    {
+        classification[i] += classification[i - 1];
+    }
+
+    // PERMUTATION
+
+    swap(arr[index_max], arr[0]);
+    int move = 0, j = 0, curr_class = num_of_class - 1, hold;
+    while (++comparisons && move < size - 1)
+    {
+        while (++comparisons && j > classification[curr_class] - 1)
+        {
+            j++;
+            curr_class = int(delta * (arr[j] - minVal));
+        }
+        hold = arr[j];
+        if (++comparisons && curr_class < 0)
+            break;
+        while (++comparisons && j != classification[curr_class])
+        {
+            curr_class = int(delta * (hold - minVal));
+            --classification[curr_class];
+            swap(hold, arr[classification[curr_class]]);
+            ++move;
+        }
+    }
+
+    delete[] classification;
+    insertionSort(arr, size, comparisons);
+}
 // SORT DATA
 void SortData_Ver_Comp(int type_sort, long long int &comparisons, int *&arr, int size)
 {
@@ -336,6 +397,7 @@ void SortData_Ver_Comp(int type_sort, long long int &comparisons, int *&arr, int
         countingSort(arr, size, comparisons);
         break;
     case flash:
+        flashSort(arr, size, comparisons);
         break;
     default:
         break;

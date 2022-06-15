@@ -6,6 +6,8 @@
 
 using namespace std;
 
+int findMin(int *arr, int size);
+
 // Selection sort
 int indexMax(int *arr, int size);
 void selectionSort(int *&&arr, int size);

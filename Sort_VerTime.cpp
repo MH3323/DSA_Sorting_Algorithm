@@ -1,5 +1,14 @@
 #include "Sort_VerTime.h"
 
+int findMin(int *arr, int size)
+{
+    int min = arr[0];
+    for (int i = 1; i < size; i++)
+        if (arr[i] < min)
+            min = arr[i];
+    return min;
+}
+
 // Selections sort
 int indexMax(int *arr, int size)
 {
@@ -302,7 +311,59 @@ void countingSort(int *&arr, int size)
         arr[i] = output[i];
 }
 
-void flashSort(int *&arr, int size);
+void flashSort(int *&arr, int size)
+{
+    // CLASSIFICATION
+
+    int index_max = indexMax(arr, size);
+    int minVal = findMin(arr, size);
+    int num_of_class = int(float(0.45) * size);
+    int *classification = new int[num_of_class];
+    const int delta = int((num_of_class - 1) / (arr[index_max] - minVal));
+
+    if (minVal == arr[index_max])
+        return;
+
+    // The loop below is to count element in each class
+    for (int i = 0; i < num_of_class; i++)
+        classification[i] = 0;
+    for (int i = 0; i < size; i++)
+    {
+        ++classification[delta * (arr[i] - minVal)];
+    }
+
+    // This loop uses to calculate the index of last element in each class.
+    for (int i = 1; i < num_of_class; i++)
+    {
+        classification[i] += classification[i - 1];
+    }
+
+    // PERMUTATION
+
+    swap(arr[index_max], arr[0]);
+    int move = 0, j = 0, curr_class = num_of_class - 1, hold;
+    while (move < size - 1)
+    {
+        while (j > classification[curr_class] - 1)
+        {
+            j++;
+            curr_class = int(delta * (arr[j] - minVal));
+        }
+        hold = arr[j];
+        if (curr_class < 0)
+            break;
+        while (j != classification[curr_class])
+        {
+            curr_class = int(delta * (hold - minVal));
+            --classification[curr_class];
+            swap(hold, arr[classification[curr_class]]);
+            ++move;
+        }
+    }
+
+    delete[] classification;
+    insertionSort(arr, size);
+}
 
 // SORT DATA
 void SortData_Ver_Time(int type_sort, std::chrono::high_resolution_clock::time_point &start, std::chrono::high_resolution_clock::time_point &done, int *&arr, int size)
@@ -361,7 +422,7 @@ void SortData_Ver_Time(int type_sort, std::chrono::high_resolution_clock::time_p
         break;
     case flash:
         start = start_time;
-        // Call flash sort is here
+        flashSort(arr, size);
         done = end_time;
         break;
     default:

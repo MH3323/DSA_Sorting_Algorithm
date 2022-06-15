@@ -49,12 +49,16 @@ void printParameter_AMode(std::chrono::high_resolution_clock::time_point start,
                           long long int comparisions, string parameter)
 {
     if (parameter == _p_time)
-        cout << "Running time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << endl;
+        cout << "Running time: " << setw(20)
+             << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+             << " milliseconds" << endl;
     else if (parameter == _p_comp)
         cout << "Comparisions: " << left << setw(14) << comparisions << endl;
     else if (parameter == _p_both)
     {
-        cout << "Running time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << endl;
+        cout << "Running time: " << setw(20)
+             << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+             << " milliseconds" << endl;
         cout << "Comparisions: " << left << setw(14) << comparisions << endl;
     }
 }
@@ -66,14 +70,20 @@ void printParameter_CMode(std::chrono::high_resolution_clock::time_point start,
                           long long int comp_1, long long int comp_2, string parameter)
 {
     if (parameter == _p_time)
-        cout << "Running time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
-             << " | " << std::chrono::duration_cast<std::chrono::milliseconds>(end2 - start2).count() << endl;
+        cout << "Running time: " << setw(20)
+             << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+             << " | " << setw(20)
+             << std::chrono::duration_cast<std::chrono::milliseconds>(end2 - start2).count()
+             << " milliseconds" << endl;
     else if (parameter == _p_comp)
         cout << "Comparisions: " << left << setw(14) << comp_1 << " | " << left << setw(14) << comp_2 << endl;
     else if (parameter == _p_both)
     {
-        cout << "Running time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
-             << " | " << std::chrono::duration_cast<std::chrono::milliseconds>(end2 - start2).count() << endl;
+        cout << "Running time: " << setw(20)
+             << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+             << " | " << setw(20)
+             << std::chrono::duration_cast<std::chrono::milliseconds>(end2 - start2).count()
+             << " milliseconds" << endl;
         cout << "Comparisions: " << setw(14) << comp_1 << " | " << setw(14) << comp_2 << endl;
     }
 }
