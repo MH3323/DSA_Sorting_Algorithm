@@ -58,9 +58,9 @@ void heapify(int arr[], int size, int i, long long int &comparisons)
     int largest = i;
     int l = 2 * i + 1;
     int r = 2 * i + 2;
-    if (l < size && arr[l] > arr[largest] && comparisons++)
+    if (++comparisons && l < size && arr[l] > arr[largest])
         largest = l;
-    if (r < size && arr[r] > arr[largest] && comparisons++)
+    if (++comparisons && r < size && arr[r] > arr[largest])
         largest = r;
     if (largest != i)
     {
@@ -240,7 +240,7 @@ void shakerSort(int *&arr, int size, long long int &comparisons)
     {
         for (int i = Left; i < Right; i++)
         {
-            if (arr[i] > arr[i + 1] && comparisons++)
+            if (++comparisons && arr[i] > arr[i + 1])
             {
                 swap(arr[i], arr[i + 1]);
                 k = i;
@@ -249,7 +249,7 @@ void shakerSort(int *&arr, int size, long long int &comparisons)
         Right = k;
         for (int i = Right; i > Left; i--)
         {
-            if (arr[i] < arr[i - 1] && comparisons++)
+            if (++comparisons && arr[i] < arr[i - 1])
             {
                 swap(arr[i], arr[i - 1]);
                 k = i;
