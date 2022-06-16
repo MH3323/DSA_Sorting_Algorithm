@@ -316,9 +316,6 @@ void flashSort(int *&arr, int size)
     // CLASSIFICATION
 
     int index_max = 0, minVal = arr[0];
-    int num_of_class = int(float(0.45) * size);
-    double delta = double(num_of_class - 1) / (arr[index_max] - minVal);
-    int *classification = new int[num_of_class];
     for (int i = 1; i < size; i++)
     {
         if (arr[i] > arr[index_max])
@@ -328,6 +325,10 @@ void flashSort(int *&arr, int size)
     }
     if (minVal == arr[index_max])
         return;
+
+    int num_of_class = int(float(0.45) * size);
+    double delta = double(num_of_class - 1) / (arr[index_max] - minVal);
+    int *classification = new int[num_of_class];
 
     // The loop below is to count element in each class
     for (int i = 0; i < num_of_class; i++)
