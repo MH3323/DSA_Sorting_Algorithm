@@ -315,12 +315,17 @@ void flashSort(int *&arr, int size)
 {
     // CLASSIFICATION
 
-    int index_max = indexMax(arr, size);
-    int minVal = findMin(arr, size);
+    int index_max = 0, minVal = arr[0];
     int num_of_class = int(float(0.45) * size);
+    double delta = double(num_of_class - 1) / (arr[index_max] - minVal);
     int *classification = new int[num_of_class];
-    const int delta = int((num_of_class - 1) / (arr[index_max] - minVal));
-
+    for (int i = 1; i < size; i++)
+    {
+        if (arr[i] > arr[index_max])
+            index_max = i;
+        else if (arr[i] < minVal)
+            minVal = arr[i];
+    }
     if (minVal == arr[index_max])
         return;
 
@@ -329,7 +334,8 @@ void flashSort(int *&arr, int size)
         classification[i] = 0;
     for (int i = 0; i < size; i++)
     {
-        ++classification[delta * (arr[i] - minVal)];
+        int k = int(delta * (arr[i] - minVal));
+        ++classification[k];
     }
 
     // This loop uses to calculate the index of last element in each class.
@@ -341,7 +347,10 @@ void flashSort(int *&arr, int size)
     // PERMUTATION
 
     swap(arr[index_max], arr[0]);
-    int move = 0, j = 0, curr_class = num_of_class - 1, hold;
+    int move = 0,
+        j = 0,
+        curr_class = num_of_class - 1,
+        hold, t, flash_element;
     while (move < size - 1)
     {
         while (j > classification[curr_class] - 1)
@@ -349,14 +358,14 @@ void flashSort(int *&arr, int size)
             j++;
             curr_class = int(delta * (arr[j] - minVal));
         }
-        hold = arr[j];
         if (curr_class < 0)
             break;
+        flash_element = arr[j];
         while (j != classification[curr_class])
         {
-            curr_class = int(delta * (hold - minVal));
+            curr_class = int(delta * (flash_element - minVal));
             --classification[curr_class];
-            swap(hold, arr[classification[curr_class]]);
+            swap(arr[classification[curr_class]], flash_element);
             ++move;
         }
     }
