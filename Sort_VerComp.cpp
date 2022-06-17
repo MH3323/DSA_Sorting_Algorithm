@@ -55,9 +55,9 @@ void insertionSort(int *&arr, int size, long long int &comparisons)
 
 void bubbleSort(int *&arr, int size, long long int &comparisons)
 {
-    for (int i = 0; i < size - 1; i++)
-        for (int j = 0; j < size - i - 1; j++)
-            if (arr[j] > arr[j + 1])
+    for (int i = 0; ++comparisons && i < size - 1; i++)
+        for (int j = 0; ++comparisons && j < size - i - 1; j++)
+            if (++comparisons && arr[j] > arr[j + 1])
                 swap(arr[j], arr[j + 1]);
 }
 
