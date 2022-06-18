@@ -32,5 +32,5 @@ void radixSort(int *&arr, int size, long long int &comparisons);
 void shakerSort(int *&arr, int size, long long int &comparisons);
 void shellSort(int *&arr, int size, long long int &comparisons);
 void countingSort(int *&arr, int size, long long int &comparisons);
-void flashSort(int arr, int size);
+void flashSort(int arr, int size, long long int &comparisons);
 void SortData_Ver_Comp(int type_sort, long long int &comparisons, int *&arr, int size);
