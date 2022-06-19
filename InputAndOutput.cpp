@@ -84,7 +84,7 @@ void printParameter_CMode(std::chrono::high_resolution_clock::time_point start,
              << " | " << setw(20)
              << std::chrono::duration_cast<std::chrono::milliseconds>(end2 - start2).count()
              << " milliseconds" << endl;
-        cout << "Comparisions: " << setw(14) << comp_1 << " | " << setw(14) << comp_2 << endl;
+        cout << "Comparisions: " << setw(20) << comp_1 << " | " << setw(20) << comp_2 << endl;
     }
 }
 

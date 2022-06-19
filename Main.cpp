@@ -128,9 +128,9 @@ int main(int argc, char *argv[])
                         arr2[i] = arr[i];
                     std::chrono::high_resolution_clock::time_point start2, done2;
                     long long int comparisons2 = 0;
-                    SortData(Algorithm_1, start, done, comparisons, arr, size, parameter);
-                    SortData(Algorithm_2, start2, done2, comparisons2, arr2, size, parameter);
-                    printParameter_CMode(start, done, start2, done2, comparisons, comparisons2, parameter);
+                    SortData(Algorithm_1, start, done, comparisons, arr, size, _p_both);
+                    SortData(Algorithm_2, start2, done2, comparisons2, arr2, size, _p_both);
+                    printParameter_CMode(start, done, start2, done2, comparisons, comparisons2, _p_both);
                     delete[] arr2;
                 }
             }
@@ -165,9 +165,9 @@ int main(int argc, char *argv[])
                     arr2[i] = arr[i];
                 std::chrono::high_resolution_clock::time_point start2, done2;
                 long long int comparisons2 = 0;
-                SortData(Algorithm_1, start, done, comparisons, arr, size, parameter);
-                SortData(Algorithm_2, start2, done2, comparisons2, arr2, size, parameter);
-                printParameter_CMode(start, done, start2, done2, comparisons, comparisons2, parameter);
+                SortData(Algorithm_1, start, done, comparisons, arr, size, _p_both);
+                SortData(Algorithm_2, start2, done2, comparisons2, arr2, size, _p_both);
+                printParameter_CMode(start, done, start2, done2, comparisons, comparisons2, _p_both);
                 delete[] arr2;
             }
         }
